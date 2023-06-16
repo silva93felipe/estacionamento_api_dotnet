@@ -30,7 +30,7 @@ namespace estacionamento.Repositories
             throw new NotImplementedException();
         }
 
-        public bool SaveChanges()
+        public void SaveChanges()
         {
             throw new NotImplementedException();
         }

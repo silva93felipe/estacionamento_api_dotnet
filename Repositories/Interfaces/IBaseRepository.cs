@@ -12,7 +12,7 @@ namespace estacionamento.Repositories.Interfaces
         Task<T> GetById(int id);
         void Update(T entity);
         Task<bool> Delete(int id);
-        bool SaveChanges();
+        void SaveChanges();
         
     }
 }

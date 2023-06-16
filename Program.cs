@@ -1,4 +1,6 @@
 using estacionamento.context;
+using estacionamento.Repositories.Interfaces;
+using estacionamento.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,10 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddCors();
-builder.Services.AddDbContext<EstacionamentoContext>(  );
+
+builder.Services.AddDbContext<EstacionamentoContext>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IEstacionamentoRepository, EstacionamentoRepository>();
 
 var app = builder.Build();
 

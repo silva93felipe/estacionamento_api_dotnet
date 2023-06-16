@@ -6,7 +6,7 @@ using estacionamento.context;
 using estacionamento.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using estacionamento.Repositories;
+using estacionamento.Repositories.Interfaces;
 
 namespace estacionamento.Controllers
 {
@@ -14,16 +14,24 @@ namespace estacionamento.Controllers
     [Route("api/[controller]")]
     public class EstacionamentoController : ControllerBase
     {
-        private readonly EstacionamentoRepository _estacionamentoRepository;
+        private readonly IEstacionamentoRepository _estacionamentoRepository;
 
-        public EstacionamentoController(EstacionamentoRepository estacionamentoRepository){
+        public EstacionamentoController(IEstacionamentoRepository estacionamentoRepository){
             _estacionamentoRepository = estacionamentoRepository;
         }
         
         [HttpPost]
-        public async Task<IActionResult> Cadastrar(int estacionamento)
+        public IActionResult Cadastrar(Estacionamento estacionamento)
         {
-            return BadRequest();
+            _estacionamentoRepository.Create(estacionamento);
+            return Ok();
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var estacionamentos = _estacionamentoRepository.GetAll();
+            return Ok(estacionamentos);
         }
 
     }

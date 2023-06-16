@@ -10,7 +10,7 @@ namespace estacionamento.Repositories
 {
     public class EstacionamentoRepository : IEstacionamentoRepository
     {
-         private readonly EstacionamentoContext _estacionamentoContext;
+        private readonly EstacionamentoContext _estacionamentoContext;
 
         public EstacionamentoRepository(EstacionamentoContext estaciomanetoContext){
             _estacionamentoContext = estaciomanetoContext;
@@ -19,7 +19,7 @@ namespace estacionamento.Repositories
         public void Create(Estacionamento entity)
         {
             _estacionamentoContext.Add(entity);
-            
+            SaveChanges();
         }
 
         public Task<bool> Delete(int id)
@@ -29,7 +29,7 @@ namespace estacionamento.Repositories
 
         public IEnumerable<Estacionamento> GetAll()
         {
-            throw new NotImplementedException();
+            return _estacionamentoContext.Estacionamento;
         }
 
         public Task<Estacionamento> GetById(int id)
@@ -37,9 +37,9 @@ namespace estacionamento.Repositories
             throw new NotImplementedException();
         }
 
-        public bool SaveChanges()
+        public void SaveChanges()
         {
-            throw new NotImplementedException();
+            _estacionamentoContext.SaveChanges();
         }
 
         public void Update(Estacionamento entity)

@@ -9,26 +9,40 @@ namespace estacionamento.Models
     { 
         public string Nome { get; private set; }
         public int Capacidade { get; private set; }
-        public double ValorHora {get; private set; }
-        public double ValorInicial {get; private set; }
-        public double TempoInicial {get; private set; }
+        public double ValorHora { get; private set; }
+        public double ValorTaxaInicial { get; private set; }
+        public int TempoPadrao { get; private set; }
+        public int TempoTolerancia { get; private set; }
         
-        public Estacionamento(int capacidade, double valorHora, double valorInicial, double tempoInicial, string nome = "Não Informado"){
+        public Estacionamento(int capacidade, double valorHora, double valorTaxaInicial, int tempoPadrao, string nome = "Não Informado"){
             Nome = nome;
-            Capacidade = capacidade > 0 ? capacidade : 1;
-            ValorHora = valorHora > 0 ? valorHora : 1.0;
-            ValorInicial = valorInicial > 0 ? valorInicial : 1.0;
-            TempoInicial = tempoInicial > 0 ? tempoInicial : 1.0;
+            Capacidade = capacidade > 1 ? capacidade : 1;
+            ValorHora = valorHora > 1 ? valorHora : 1.0;
+            ValorTaxaInicial = valorTaxaInicial > 1 ? valorTaxaInicial : 1.0;
+            TempoPadrao = tempoPadrao > 1 ? tempoPadrao : 1;
         }
 
-        public void AtualizarCapacidade(int capacidade = 1){
-            Capacidade = capacidade > 0 ? capacidade : 1;
-            UpdateAt = DateTime.Now;
-        }
-        public void AtualizarValorHora(double valorHora = 1){            
-            ValorHora = valorHora > 0 ? valorHora : 1;
+        public void AtualizarCapacidade(int novaCapacidade = 1){
+            Capacidade = novaCapacidade > 1 ? novaCapacidade : 1;
             UpdateAt = DateTime.Now;
         }
 
+        public void AtualizarDescricao(string novaDescricao){
+            Nome = novaDescricao;
+            UpdateAt = DateTime.Now;
+        }
+        public void AtualizarValorHora(double novoValorHora = 1){            
+            ValorHora = novoValorHora > 1 ? novoValorHora : 1;
+            UpdateAt = DateTime.Now;
+        }
+
+        public void AtualizarValorTaxaInicial(double novoValorTaxaInicial = 1){            
+            ValorTaxaInicial = novoValorTaxaInicial > 1 ? novoValorTaxaInicial : 1;
+            UpdateAt = DateTime.Now;
+        }
+        public void AtualizarTolerancia(int novoTempoTolerancia = 1){            
+            TempoTolerancia = novoTempoTolerancia > 1 ? novoTempoTolerancia : 1;
+            UpdateAt = DateTime.Now;
+        }
     }
 }
