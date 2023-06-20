@@ -21,10 +21,10 @@ namespace estacionamento.Controllers
         }
         
         [HttpPost]
-        public IActionResult Cadastrar(Estacionamento estacionamento)
+        public IActionResult Create(Estacionamento estacionamento)
         {
             _estacionamentoRepository.Create(estacionamento);
-            return Ok();
+            return Ok(estacionamento);
         }
 
         [HttpGet]
@@ -32,6 +32,32 @@ namespace estacionamento.Controllers
         {
             var estacionamentos = _estacionamentoRepository.GetAll();
             return Ok(estacionamentos);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var estacionamento = _estacionamentoRepository.GetById(id);
+            if(estacionamento is null ){
+                return BadRequest();
+            }
+            return Ok(estacionamento);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _estacionamentoRepository.Delete(id);
+
+            return NoContent();
+        }
+
+
+        [HttpPatch("{id}")]
+        public IActionResult AtualizarCapacidade(int id, Estacionamento estacionamento )
+        {
+            _estacionamentoRepository.Update(id, estacionamento);
+            return NoContent();
         }
 
     }

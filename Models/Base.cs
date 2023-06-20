@@ -8,9 +8,9 @@ namespace estacionamento.Models
     public abstract class Base<T>
     {
         public T Id { get; private set; }
-        public bool Ativo {get; protected set; }
+        public bool Ativo {get; set; }
         public DateTime CreatAt {get; private set;}
-        public DateTime UpdateAt {get; protected set;}
+        public DateTime UpdateAt {get; set;}
 
         public Base(){
             Ativo = true;

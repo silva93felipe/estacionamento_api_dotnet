@@ -8,10 +8,31 @@ namespace estacionamento.Models
 {
     public class Veiculo : Base<int>
     {
-        public string Placa { get; set; }
-        public TipoVeiculo Tipo { get; set; }
-        public string NomeProprietario {get; set;}
-        public string DocumentoProprietario {get; set; }
+        public string Placa { get; private set; }
+        public TipoVeiculo Tipo { get; private set; }
+        public string NomeProprietario {get; private set;}
+        public string DocumentoProprietario {get; private set; }
+
+        public Veiculo(){
+            Tipo = TipoVeiculo.Carro;
+        }
+
+        public void AtualizaPlaca(string newPlaca){
+            Placa = newPlaca.Replace("-", "");
+        }
+
+        public void AtualizaTipoVeiculo(TipoVeiculo tipoVeiculo){
+            Tipo = tipoVeiculo;
+        }
+
+        public void AtualizaNomeProprietario(string nomeProprietario){
+            NomeProprietario = nomeProprietario;
+        }
+
+        public void AtualizaDocumentoProprietario(string documentoProprietario){
+            DocumentoProprietario = documentoProprietario;
+        }
+
 
     }
 }

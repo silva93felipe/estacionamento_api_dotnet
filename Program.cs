@@ -14,6 +14,7 @@ builder.Services.AddDbContext<EstacionamentoContext>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IEstacionamentoRepository, EstacionamentoRepository>();
+builder.Services.AddScoped<IVeiculoRepository, VeiculoRepository>();
 
 var app = builder.Build();
 

@@ -9,9 +9,9 @@ namespace estacionamento.Repositories.Interfaces
     {
         IEnumerable<T> GetAll();
         void Create(T entity);
-        Task<T> GetById(int id);
-        void Update(T entity);
-        Task<bool> Delete(int id);
+        T GetById(int id);
+        void Update(int id, T entity);
+        void Delete(int id);
         void SaveChanges();
         
     }

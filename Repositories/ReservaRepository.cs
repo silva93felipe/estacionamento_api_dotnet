@@ -15,7 +15,7 @@ namespace estacionamento.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<bool> Delete(int id)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
@@ -25,7 +25,7 @@ namespace estacionamento.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Reserva> GetById(int id)
+        public Reserva GetById(int id)
         {
             throw new NotImplementedException();
         }
@@ -35,7 +35,7 @@ namespace estacionamento.Repositories
             throw new NotImplementedException();
         }
 
-        public void Update(Reserva entity)
+        public void Update(int id, Reserva entity)
         {
             throw new NotImplementedException();
         }

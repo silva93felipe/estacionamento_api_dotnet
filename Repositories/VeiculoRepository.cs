@@ -4,40 +4,67 @@ using System.Linq;
 using System.Threading.Tasks;
 using estacionamento.Models;
 using estacionamento.Repositories.Interfaces;
+using estacionamento.context;
 
 
 namespace estacionamento.Repositories
 {
-    public class VeiculoRepository : IBaseRepository<Veiculo>
+    public class VeiculoRepository : IVeiculoRepository
     {
-        public void Create(Veiculo entity)
+        private readonly EstacionamentoContext _estacionamentoContext;
+
+        public VeiculoRepository(EstacionamentoContext estacionamentoContext)
         {
-            throw new NotImplementedException();
+            _estacionamentoContext = estacionamentoContext;
         }
 
-        public Task<bool> Delete(int id)
+        public void Create(Veiculo entity)
         {
-            throw new NotImplementedException();
+            _estacionamentoContext.Add(entity);
+
+            SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            var veiculo = _estacionamentoContext.Veiculos.SingleOrDefault(x => x.Id == id);
+
+            if(veiculo != null){
+                veiculo.Ativo = false;
+                veiculo.UpdateAt = DateTime.Now;
+
+                SaveChanges();
+            }
         }
 
         public IEnumerable<Veiculo> GetAll()
         {
-            throw new NotImplementedException();
+            return _estacionamentoContext.Veiculos;
         }
 
-        public Task<Veiculo> GetById(int id)
+        public Veiculo? GetById(int id)
         {
-            throw new NotImplementedException();
+            return _estacionamentoContext.Veiculos.FirstOrDefault(x => x.Id == id);
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            _estacionamentoContext.SaveChanges();
         }
 
-        public void Update(Veiculo entity)
+        public void Update(int id, Veiculo entity)
         {
-            throw new NotImplementedException();
+            var veiculo = GetById(id);
+
+            if(veiculo != null){
+                veiculo.AtualizaPlaca(entity.Placa);
+                veiculo.AtualizaDocumentoProprietario(entity.DocumentoProprietario);
+                veiculo.AtualizaNomeProprietario(entity.NomeProprietario);
+                veiculo.AtualizaTipoVeiculo(entity.Tipo);
+                veiculo.UpdateAt = DateTime.Now;
+
+                SaveChanges();
+            }
         }
     }
 }

@@ -14,12 +14,13 @@ namespace estacionamento.Models
         public int TempoPadrao { get; private set; }
         public int TempoTolerancia { get; private set; }
         
-        public Estacionamento(int capacidade, double valorHora, double valorTaxaInicial, int tempoPadrao, string nome = "Não Informado"){
+        public Estacionamento(int capacidade, double valorHora, double valorTaxaInicial, int tempoPadrao, int tempoTolerancia, string nome = "Não Informado"){
             Nome = nome;
             Capacidade = capacidade > 1 ? capacidade : 1;
             ValorHora = valorHora > 1 ? valorHora : 1.0;
             ValorTaxaInicial = valorTaxaInicial > 1 ? valorTaxaInicial : 1.0;
             TempoPadrao = tempoPadrao > 1 ? tempoPadrao : 1;
+            TempoTolerancia = tempoTolerancia > 1 ? tempoTolerancia : 1;
         }
 
         public void AtualizarCapacidade(int novaCapacidade = 1){
