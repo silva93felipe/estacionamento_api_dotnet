@@ -46,5 +46,21 @@ namespace estacionamento.Controllers
 
             return Ok(veiculo);
         }
+
+        [HttpPatch("{id}")]
+        public IActionResult Atualizar(int id, Veiculo veiculo)
+        {
+           _veiculoRepository.Update(id, veiculo);
+
+           return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+           _veiculoRepository.Delete(id);
+
+           return NoContent();
+        }
     }
 }

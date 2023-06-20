@@ -18,8 +18,22 @@ namespace estacionamento.Controllers
             _estacionamentoContext = estaciomanetoContext;
         }
         
+        [HttpDelete]
+        public async Task<IActionResult> Cancelar(int reserva)
+        {
+
+            return BadRequest();
+        }
+
         [HttpPost]
-        public async Task<IActionResult> Cadastrar(int reserva)
+        public async Task<IActionResult> Reservar(int veiculoId, int estabeleciomentoId)
+        {
+
+            return BadRequest();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Encerrar(int veiculoId)
         {
 
             return BadRequest();

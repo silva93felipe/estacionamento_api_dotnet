@@ -1,8 +1,9 @@
 namespace estacionamento.Enum
 {
     public enum StatusReserva
-{
-    Disponivel,
-    Reservada
-}
+    {
+        Disponivel,
+        Ocupada,
+        Encerrada
+    }
 }

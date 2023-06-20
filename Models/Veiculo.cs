@@ -13,8 +13,11 @@ namespace estacionamento.Models
         public string NomeProprietario {get; private set;}
         public string DocumentoProprietario {get; private set; }
 
-        public Veiculo(){
-            Tipo = TipoVeiculo.Carro;
+        public Veiculo(string placa, TipoVeiculo tipo, string nomeProprietario, string documentoProprietario){
+            Placa = placa;
+            Tipo = tipo;
+            NomeProprietario = nomeProprietario;
+            DocumentoProprietario = documentoProprietario;
         }
 
         public void AtualizaPlaca(string newPlaca){

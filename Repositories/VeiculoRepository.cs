@@ -44,7 +44,7 @@ namespace estacionamento.Repositories
 
         public Veiculo? GetById(int id)
         {
-            return _estacionamentoContext.Veiculos.FirstOrDefault(x => x.Id == id);
+            return _estacionamentoContext.Veiculos.SingleOrDefault(x => x.Id == id);
         }
 
         public void SaveChanges()
