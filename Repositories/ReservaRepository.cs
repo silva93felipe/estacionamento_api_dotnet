@@ -5,11 +5,19 @@ using System.Threading.Tasks;
 using estacionamento.Repositories;
 using estacionamento.Models;
 using estacionamento.Repositories.Interfaces;
+using estacionamento.context;
 
 namespace estacionamento.Repositories
 {
-    public class ReservaRepository : IBaseRepository<Reserva>
+    public class ReservaRepository : IReservaRepository
     {
+        private readonly EstacionamentoContext _estacionamentoContext;
+
+        public ReservaRepository(EstacionamentoContext estacionamentoContext)
+        {
+            _estacionamentoContext = estacionamentoContext;
+        }
+
         public void Create(Reserva entity)
         {
             throw new NotImplementedException();
@@ -17,22 +25,28 @@ namespace estacionamento.Repositories
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var reserva = _estacionamentoContext.Reservas.Where(r => r.Id == id).SingleOrDefault();
+
+            if(reserva != null){
+                reserva.Cancelar();
+            }
+
+            SaveChanges();
         }
 
         public IEnumerable<Reserva> GetAll()
         {
-            throw new NotImplementedException();
+            return _estacionamentoContext.Reservas;
         }
 
-        public Reserva GetById(int id)
+        public Reserva? GetById(int id)
         {
-            throw new NotImplementedException();
+            return _estacionamentoContext.Reservas.Where(r => r.Id == id).SingleOrDefault();
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            _estacionamentoContext.SaveChanges();
         }
 
         public void Update(int id, Reserva entity)

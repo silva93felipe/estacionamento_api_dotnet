@@ -11,12 +11,12 @@ namespace estacionamento.Models
         public virtual Estacionamento Estacionamento {get; set;}
         public virtual Veiculo Veiculo {get; set;} 
         public DateTime DataEntrada { get; private set ; }
-        public DateTime DataSaida { get; private set ; }
-        public double ValorTotal { get; private set; }
+        public DateTime? DataSaida { get; private set ; }
+        public double? ValorTotal { get; private set; }
         public StatusReserva Status { get; private set; }
-        public FormaPagamento FormaPagamento { get; private set; }
+        public FormaPagamento? FormaPagamento { get; private set; }
 
-        public Reserva(int veiculoId, int estabeleciomentoId){
+        public Reserva(){
             Status = StatusReserva.Ocupada;
             DataEntrada = DateTime.Now;
         }
@@ -40,10 +40,12 @@ namespace estacionamento.Models
         public void Encerrar(DateTime dataEncerramento){
             Status = StatusReserva.Encerrada;
             DataSaida = dataEncerramento;
+
+            CalcularValorTotal(3);
         }
 
-        private void CalcularValorTotal(){
-            
+        private void CalcularValorTotal(int tempoMinimo){
+            //double tempoTotal = DataSaida - DataEntrada;
         }
     }
 }

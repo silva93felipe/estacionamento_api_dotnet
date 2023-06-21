@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using estacionamento.context;
 using estacionamento.Models;
+using estacionamento.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace estacionamento.Controllers
@@ -12,17 +13,19 @@ namespace estacionamento.Controllers
     [Route("api/[controller]")]
     public class ReservaController : ControllerBase
     {
-        private readonly EstacionamentoContext _estacionamentoContext;
+        private readonly IReservaRepository _reservaRepository;
 
-        public ReservaController(EstacionamentoContext estaciomanetoContext){
-            _estacionamentoContext = estaciomanetoContext;
-        }
-        
-        [HttpDelete]
-        public async Task<IActionResult> Cancelar(int reserva)
+        public ReservaController(IReservaRepository reservaRepository)
         {
+            _reservaRepository = reservaRepository;
+        }
 
-            return BadRequest();
+        [HttpDelete("{id}")]
+        public IActionResult Cancelar(int id)
+        {
+             _reservaRepository.Delete(id);
+
+            return NoContent();
         }
 
         [HttpPost]

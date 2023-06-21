@@ -12,7 +12,7 @@ namespace estacionamento.context
     {
         public DbSet<Estacionamento> Estacionamento { get; set; }
         public DbSet<Veiculo> Veiculos { get; set; }
-       // public DbSet<Reserva> Reservas { get; set; }
+        public DbSet<Reserva> Reservas { get; set; }
         public string DbPath { get; }
         public EstacionamentoContext()
         {
@@ -47,7 +47,15 @@ namespace estacionamento.context
                         .Property(e => e.UpdateAt).HasDefaultValue(DateTime.UtcNow);
             modelBuilder.Entity<Estacionamento>()
                         .Property(e => e.CreatAt).HasDefaultValue(DateTime.UtcNow);
-           
+        
+        
+            modelBuilder.Entity<Reserva>()
+                                    .Property(e => e.Ativo).HasDefaultValue("true");
+            modelBuilder.Entity<Reserva>()
+                        .Property(e => e.UpdateAt).HasDefaultValue(DateTime.UtcNow);
+            modelBuilder.Entity<Reserva>()
+                        .Property(e => e.CreatAt).HasDefaultValue(DateTime.UtcNow);
+
         }
         
     }
